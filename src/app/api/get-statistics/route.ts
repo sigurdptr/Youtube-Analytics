@@ -21,8 +21,6 @@ export async function GET(req: NextRequest): Promise<NextResponse<APIResponse>> 
       id: channel_id
     });
 
-    console.dir(res.data.items[0])
-
     return NextResponse.json({result: res.data.items[0]})
   }
   catch (err) {
