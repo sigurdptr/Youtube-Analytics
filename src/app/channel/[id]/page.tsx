@@ -16,8 +16,6 @@ export default function ChannelDashboard({ params }: {params: Promise<{ id: stri
       const res = await fetch(`/api/get-statistics?id=${channelId}`);
       const res_data = await res.json();
       
-      console.log(`${res_data.result.brandingSettings.image.bannerExternalUrl}=w1707-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj`)
-
       setData(res_data.result);
     }
 
@@ -53,10 +51,15 @@ export default function ChannelDashboard({ params }: {params: Promise<{ id: stri
                   <Separator className="my-auto pt-1"/>
                 </div>
               </div>
-              <img
-                className="rounded-xl"
-                src={`${data.brandingSettings.image.bannerExternalUrl}=w1707-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj`}
-              />
+              {
+                (data.brandingSettings?.image?.bannerExternalUrl !== undefined) ?
+                  <img
+                    className="rounded-xl"
+                    src={`${data.brandingSettings.image.bannerExternalUrl}=w1707-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj`}
+                  />
+                  :
+                  <></>
+              }
               <div className="grid grid-flow-col gap-4">
                 <Card className="px-8 w-64 h-32">
                   <CardTitle>Total subscribers</CardTitle>
