@@ -5,9 +5,9 @@
 &nbsp;&nbsp;&nbsp;&nbsp;
 
 <div align="center">
-    <img src="assets/landing.png" height=220px alt="landing-page">
+    <img src="assets/landing.png" height=200px alt="landing-page">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <img src="assets/channel.png" height=220px alt="channel-page">
+    <img src="assets/channel.png" height=200px alt="channel-page">
 </div>
 
 &nbsp;&nbsp;&nbsp;&nbsp;
