@@ -46,7 +46,6 @@ export default function Home() {
     }
 
     if (channels.length == 1) {
-      alert(channels)
       redirect(
         `/channel/${channels[0]}`,
         RedirectType.push

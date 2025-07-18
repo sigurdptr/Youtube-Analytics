@@ -3,30 +3,27 @@ const {google} = require('googleapis');
 const youtube = google.youtube('v3');
 
 type APIResponse = {
-  result?: null | string[],
+  result?: null | object,
   error?: null | string
 }
 
 export async function GET(req: NextRequest): Promise<NextResponse<APIResponse>> {
   try {
-    const handle = req.nextUrl.searchParams.get("handle");
+    const channel_id = req.nextUrl.searchParams.get("id");
 
-    if (handle === null) {
+    if (channel_id === null) {
       return NextResponse.json({error: "No handle provided"})
     }
 
     const res = await youtube.channels.list({
       auth: process.env.API_KEY,
-      part: "id",
-      forHandle: handle
+      part: "brandingSettings,contentDetails,contentOwnerDetails,id,localizations,snippet,statistics,status,topicDetails",
+      id: channel_id
     });
 
-    const id_results = [];
-    for (let item of res.data.items) {
-      id_results.push(item.id);
-    }
+    console.dir(res.data.items[0])
 
-    return NextResponse.json({result: id_results})
+    return NextResponse.json({result: res.data.items[0]})
   }
   catch (err) {
     console.error(err)
