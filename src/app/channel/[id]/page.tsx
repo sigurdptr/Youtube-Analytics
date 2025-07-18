@@ -38,6 +38,11 @@ export default function ChannelDashboard({ params }: {params: Promise<{ id: stri
     return formatter.format(number);
   }
 
+  function formatDate(date: string): string {
+    const dateObj = new Date(date);
+    return dateObj.toLocaleDateString()
+  }
+
   return (
       <main className="font-mono grid items-center justify-items-center h-screen">
         {(data === null) ?
@@ -109,7 +114,7 @@ export default function ChannelDashboard({ params }: {params: Promise<{ id: stri
                   <CardTitle>Total subscribers</CardTitle>
                   <CardContent className="px-0">
                     <h1 className="font-bold text-3xl">
-                      {formatNumber(data.statistics.subscriberCount)}
+                      {formatDate(data.snippet.publishedAt)}
                     </h1>
                   </CardContent>
                 </Card>
