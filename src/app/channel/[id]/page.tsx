@@ -4,10 +4,11 @@ import FadeIn from "@/components/misc/fade-in";
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator"
-import { Loader2Icon } from "lucide-react";
+import { Loader2Icon, OctagonAlert } from "lucide-react";
 
 export default function ChannelDashboard({ params }: {params: Promise<{ id: string }> }) {
   const [data, setData] = useState<any | null>(null);
+  const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
     const loadPage = async () => {
@@ -16,6 +17,12 @@ export default function ChannelDashboard({ params }: {params: Promise<{ id: stri
       const res = await fetch(`/api/get-statistics?id=${channelId}`);
       const res_data = await res.json();
       
+      if (res_data.result === undefined) {
+        console.error(res_data.error);
+        setError(true);
+        return;
+      }
+
       setData(res_data.result);
     }
 
@@ -34,8 +41,18 @@ export default function ChannelDashboard({ params }: {params: Promise<{ id: stri
   return (
       <main className="font-mono grid items-center justify-items-center h-screen">
         {(data === null) ?
-          <Card className="w-26 h-26 flex flex-col justify-center">
-            <Loader2Icon className="mx-auto animate-spin w-10 h-10" />
+          <Card className="min-w-26 min-h-26 flex flex-col justify-center">
+            {(error) ?
+              <div className="flex flex-row mx-6">
+                <OctagonAlert
+                  className="my-auto w-8 h-8"
+                  color="red"
+                />
+                <h1 className="text-xl my-auto ml-4">Error fetching data</h1>
+              </div>
+              :
+              <Loader2Icon className="mx-auto animate-spin w-10 h-10" />
+            }
           </Card>
           :
           <FadeIn>
