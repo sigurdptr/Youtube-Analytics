@@ -1,5 +1,7 @@
 'use client'
 
+import Image from "next/image";
+import FadeIn from "@/components/misc/fade-in";
 import { Search } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -14,23 +16,42 @@ import {
   FormItem,
   FormMessage
 } from "@/components/ui/form";
-import Image from "next/image";
-import FadeIn from "@/components/misc/fade-in";
+import { toast } from "sonner"
+import { redirect, RedirectType } from "next/navigation";
 
 const FormSchema = z.object({
-  link: z.string(),
+  handle: z.string(),
 })
 
 export default function Home() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      link: "",
+      handle: "",
     },
   })
  
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    alert(data.link)
+  async function onSubmit(data: z.infer<typeof FormSchema>) {
+    const res = await fetch(`/api/get-id?handle=${data.handle}`);
+
+    const res_data = await res.json();
+    const channels = res_data.result;
+
+    if (channels === undefined) {
+      toast.error(
+        "No channels found",
+        { style: { color: "red" } }
+      );
+      return;
+    }
+
+    if (channels.length == 1) {
+      alert(channels)
+      redirect(
+        `/channel/${channels[0]}`,
+        RedirectType.push
+      );
+    }
   }
 
   return (
@@ -39,8 +60,8 @@ export default function Home() {
         <Card className="px-12 py-12 w-128">
           <Image
             className="mx-auto"
-            width="150"
-            height="150"
+            width="100"
+            height="100"
             src="/statistics.png"
             alt="statistics"
           />
@@ -56,7 +77,7 @@ export default function Home() {
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <FormField
                 control={form.control}
-                name="link"
+                name="handle"
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
