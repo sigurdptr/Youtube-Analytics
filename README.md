@@ -5,9 +5,13 @@
 &nbsp;&nbsp;&nbsp;&nbsp;
 
 <div align="center">
+  <kbd>
     <img src="assets/landing.png" height=200px alt="landing-page">
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </kbd>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <kbd>
     <img src="assets/channel.png" height=200px alt="channel-page">
+  </kbd>
 </div>
 
 &nbsp;&nbsp;&nbsp;&nbsp;
