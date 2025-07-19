@@ -38,4 +38,4 @@ npm run dev
 
 ## Deployment
 
-The roject was designed to be easily deployable on vercel. Make sure you set up the environment variable "API_KEY" before deployment.
+The project was designed to be easily deployable on vercel. Make sure you set up the environment variable "API_KEY" before deployment.
