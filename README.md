@@ -5,11 +5,14 @@
 &nbsp;&nbsp;&nbsp;&nbsp;
 
 <div align="center">
-  <kbd>
+  <kbd align="center">
     <img src="assets/landing.png" height=200px alt="landing-page">
   </kbd>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <kbd>
+  <picture>
+    <source media="(min-width: 900px)" srcset="assets/empty.png">
+    <img alt="" src="">
+  </picture>
+  <kbd align="center">
     <img src="assets/channel.png" height=200px alt="channel-page">
   </kbd>
 </div>
