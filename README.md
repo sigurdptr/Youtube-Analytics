@@ -19,9 +19,9 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 
-<h2 align="center">
+<h4 align="center">
     A website designed to showcase statistics of a youtube channel by entering their youtube handle
-</h2>
+</h4>
 
 ## How to set up
 
